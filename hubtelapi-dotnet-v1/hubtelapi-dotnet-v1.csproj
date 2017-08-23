@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C67BC006-E559-43C1-8009-2A8B233E2CAB}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>hubtelapi_dotnet_v1</RootNamespace>
+    <AssemblyName>hubtelapi-dotnet-v1.462</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\binaries\.Net.4.6.2\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Demo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Hubtel\AbstractApi.cs" />
+    <Compile Include="Hubtel\AbstractRestClient.cs" />
+    <Compile Include="Hubtel\AccountApi.cs" />
+    <Compile Include="Hubtel\AccountContact.cs" />
+    <Compile Include="Hubtel\AccountProfile.cs" />
+    <Compile Include="Hubtel\Action.cs" />
+    <Compile Include="Hubtel\ApiHost.cs" />
+    <Compile Include="Hubtel\ApiList.cs" />
+    <Compile Include="Hubtel\BasicAuth.cs" />
+    <Compile Include="Hubtel\Campaign.cs" />
+    <Compile Include="Hubtel\ChildAccount.cs" />
+    <Compile Include="Hubtel\Contact.cs" />
+    <Compile Include="Hubtel\ContactApi.cs" />
+    <Compile Include="Hubtel\ContactGroup.cs" />
+    <Compile Include="Hubtel\ApiDictionary.cs" />
+    <Compile Include="Hubtel\ApiException.cs" />
+    <Compile Include="Hubtel\ContentApi.cs" />
+    <Compile Include="Hubtel\ContentFolder.cs" />
+    <Compile Include="Hubtel\ContentLibrary.cs" />
+    <Compile Include="Hubtel\ContentMedia.cs" />
+    <Compile Include="Hubtel\ContentMediaFile.cs" />
+    <Compile Include="Hubtel\FileExtensionMimeTypeMapping.cs" />
+    <Compile Include="Hubtel\HttpUploadHelper.cs" />
+    <Compile Include="Hubtel\MediaInfo.cs" />
+    <Compile Include="Hubtel\IAuth.cs" />
+    <Compile Include="Hubtel\Invoice.cs" />
+    <Compile Include="Hubtel\Message.cs" />
+    <Compile Include="Hubtel\MessageResponse.cs" />
+    <Compile Include="Hubtel\MessagingApi.cs" />
+    <Compile Include="Hubtel\MimePart.cs" />
+    <Compile Include="Hubtel\MoKeyWord.cs" />
+    <Compile Include="Hubtel\NumberPlan.cs" />
+    <Compile Include="Hubtel\NumberPlanItem.cs" />
+    <Compile Include="Hubtel\OAuth.cs" />
+    <Compile Include="Hubtel\Sender.cs" />
+    <Compile Include="Hubtel\Service.cs" />
+    <Compile Include="Hubtel\ServiceType.cs" />
+    <Compile Include="Hubtel\Settings.cs" />
+    <Compile Include="Hubtel\MessageTemplate.cs" />
+    <Compile Include="Hubtel\StreamMimePart.cs" />
+    <Compile Include="Hubtel\StringMimePart.cs" />
+    <Compile Include="Hubtel\SupportApi.cs" />
+    <Compile Include="Hubtel\Tag.cs" />
+    <Compile Include="Hubtel\Ticket.cs" />
+    <Compile Include="Hubtel\TicketResponse.cs" />
+    <Compile Include="Hubtel\BasicRestClient.cs" />
+    <Compile Include="Hubtel\BasicRequestHandler.cs" />
+    <Compile Include="Hubtel\ConsoleRequestLogger.cs" />
+    <Compile Include="Hubtel\HttpDelete.cs" />
+    <Compile Include="Hubtel\HttpHead.cs" />
+    <Compile Include="Hubtel\HttpGet.cs" />
+    <Compile Include="Hubtel\HttpPut.cs" />
+    <Compile Include="Hubtel\HttpPost.cs" />
+    <Compile Include="Hubtel\HttpRequest.cs" />
+    <Compile Include="Hubtel\HttpRequestException.cs" />
+    <Compile Include="Hubtel\HttpResponse.cs" />
+    <Compile Include="Hubtel\IRequestHandler.cs" />
+    <Compile Include="Hubtel\IRequestLogger.cs" />
+    <Compile Include="Hubtel\ParameterMap.cs" />
+    <Compile Include="Hubtel\StringUtil.cs" />
+    <Compile Include="Hubtel\Topup.cs" />
+    <Compile Include="Hubtel\TopupLocation.cs" />
+    <Compile Include="Hubtel\UploadFile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
