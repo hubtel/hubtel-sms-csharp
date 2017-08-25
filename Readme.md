@@ -61,6 +61,7 @@ The SDK currently is organized around four main classes:
             const string clientSecret = "password23";
             try {
                 var host = new ApiHost(new BasicAuth(clientId, clientSecret));
+                var messageApi = new MessagingApi(host);
                 // scheduling message from 4 days from now.
                 Message message = new Message {
                     From = "wazza",
