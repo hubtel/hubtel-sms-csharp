@@ -19,6 +19,16 @@
             Auth = null;
         }
 
+        public ApiHost(string hostname, int port, string contextPath, int timeout, bool enabledConsoleLog, IAuth auth, bool securedConnection)
+        {
+            Hostname = hostname;
+            Port = port;
+            ContextPath = contextPath;
+            Timeout = timeout;
+            EnabledConsoleLog = enabledConsoleLog;
+            Auth = auth;
+            SecuredConnection = securedConnection;
+        }
 
         /// <summary>
         /// </summary>
