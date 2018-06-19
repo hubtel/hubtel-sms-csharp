@@ -17,6 +17,7 @@ using System.IO;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using hubtelapi_dotnet_v1.Payments;
 using Newtonsoft.Json;
 
@@ -53,7 +54,7 @@ namespace hubtelapi_dotnet_v1.Hubtel
         /// Request Failed : " + errorMessage
         /// or
         /// </exception>
-        public static async Task<MoneyResponse> RequestPayment( string mobile,decimal amount, string fullName, string channel,string description=null,string primaryCallbackUrl=null,string secondaryCallbackUrl=null)
+        public  MoneyResponse RequestPayment( string mobile,decimal amount, string fullName, string channel,string description=null,string primaryCallbackUrl=null,string secondaryCallbackUrl=null)
         {
             try
             {
@@ -61,7 +62,7 @@ namespace hubtelapi_dotnet_v1.Hubtel
                 var data = new
                 {
                     CustomerName = fullName,
-                    CustomerMsisd = mobile,
+                    CustomerMsisdn = mobile,
                     CustomerEmail = "",
                     Channel = channel,
                     Amount = amount,
@@ -78,7 +79,7 @@ namespace hubtelapi_dotnet_v1.Hubtel
                 var response = RestClient.Post(resource, contentType, Encoding.UTF8.GetBytes(stringWriter.ToString()));
                 if (response == null) throw new Exception("Request Failed. Unable to get server response");
                 if (response.Status == Convert.ToInt32(HttpStatusCode.OK))
-                    return await Task.FromResult(JsonConvert.DeserializeObject<MoneyResponse>(response.GetBodyAsString()));
+                    return  JsonConvert.DeserializeObject<MoneyResponse>(response.GetBodyAsString());
                 var errorMessage = $"Status Code={response.Status}, Message={response.GetBodyAsString()}";
                 throw new Exception("Request Failed : " + errorMessage);
             }
@@ -87,5 +88,31 @@ namespace hubtelapi_dotnet_v1.Hubtel
                 throw new Exception(JsonConvert.SerializeObject(e));
             }
         }
+
+        public  TransactionResponse CheckPaymentStatus(Transaction transaction)
+        {
+            try
+            {
+                var merchant = ConfigurationManager.AppSettings["MerchantNumber"];
+
+                var resource = $"/merchantaccount/merchants/{merchant}/transactions/status";
+
+                var parameterMap = RestClient.NewParams();
+                if (!string.IsNullOrWhiteSpace(transaction.HubtelTransactionId)) parameterMap.Set("hubtelTransactionId", HttpUtility.UrlEncode(transaction.HubtelTransactionId));
+                if (!string.IsNullOrWhiteSpace(transaction.NetworkTransactionId)) parameterMap.Set("networkTransactionId", HttpUtility.UrlEncode(transaction.NetworkTransactionId));
+                if (!string.IsNullOrWhiteSpace(transaction.InvoiceToken)) parameterMap.Set("invoiceToken", HttpUtility.UrlEncode(transaction.InvoiceToken));
+                
+                var response = RestClient.Get(resource, parameterMap);
+                if (response == null) throw new Exception("Request Failed. Unable to get server response");
+                if (response.Status == Convert.ToInt32(HttpStatusCode.OK)) return JsonConvert.DeserializeObject<TransactionResponse>(response.GetBodyAsString());
+                var errorMessage = String.Format("Status Code={0}, Message={1}", response.Status, response.GetBodyAsString());
+                throw new Exception("Request Failed : " + errorMessage);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(JsonConvert.SerializeObject(e));
+            }
+        }
+
     }
 }

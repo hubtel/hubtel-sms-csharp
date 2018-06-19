@@ -9,6 +9,7 @@
     <IgnoreExtensions>
     </IgnoreExtensions>
     <IgnoreFiles>
+      <IgnoreFile>.\hubtelapi-dotnet-v1\Demo.cs</IgnoreFile>
       <IgnoreFile>.\hubtelapi-dotnet-v1\Hubtel\PaymentsApi.cs</IgnoreFile>
     </IgnoreFiles>
   </SpellChecker>
