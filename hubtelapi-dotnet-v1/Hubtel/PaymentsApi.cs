@@ -1,10 +1,10 @@
 ﻿// ***********************************************************************
 // Assembly         : hubtelapi-dotnet-v1.462
-// Author           : DUHO
+// Author           : hubtel
 // Created          : 06-18-2018
 //
 // Last Modified By : DUHO
-// Last Modified On : 06-18-2018
+// Last Modified On : 06-19-2018
 // ***********************************************************************
 // <copyright file="PaymentsApi.cs" company="">
 //     Copyright ©  2014
@@ -30,7 +30,7 @@ namespace hubtelapi_dotnet_v1.Hubtel
     public class PaymentsApi: AbstractApi
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PaymentsApi"/> class.
+        /// Initializes a new instance of the <see cref="PaymentsApi" /> class.
         /// </summary>
         /// <param name="host"><see cref="ApiHost" /></param>
         public PaymentsApi(ApiHost host) : base(host)
@@ -48,13 +48,11 @@ namespace hubtelapi_dotnet_v1.Hubtel
         /// <param name="primaryCallbackUrl">The primary callback URL.</param>
         /// <param name="secondaryCallbackUrl">The secondary callback URL.</param>
         /// <returns>Task&lt;MoneyResponse&gt;.</returns>
-        /// <exception cref="Exception">
-        /// Request Failed. Unable to get server response
+        /// <exception cref="Exception">Request Failed. Unable to get server response
         /// or
         /// Request Failed : " + errorMessage
-        /// or
-        /// </exception>
-        public  MoneyResponse RequestPayment( string mobile,decimal amount, string fullName, string channel,string description=null,string primaryCallbackUrl=null,string secondaryCallbackUrl=null)
+        /// or</exception>
+        public MoneyResponse RequestPayment( string mobile,decimal amount, string fullName, string channel,string description=null,string primaryCallbackUrl=null,string secondaryCallbackUrl=null)
         {
             try
             {
@@ -89,7 +87,18 @@ namespace hubtelapi_dotnet_v1.Hubtel
             }
         }
 
-        public  TransactionResponse CheckPaymentStatus(Transaction transaction)
+        /// <summary>
+        /// Checks the payment status.
+        /// </summary>
+        /// <param name="transaction">The transaction.</param>
+        /// <returns>TransactionResponse.</returns>
+        /// <exception cref="Exception">
+        /// Request Failed. Unable to get server response
+        /// or
+        /// Request Failed : " + errorMessage
+        /// or
+        /// </exception>
+        public TransactionResponse CheckPaymentStatus(Transaction transaction)
         {
             try
             {
