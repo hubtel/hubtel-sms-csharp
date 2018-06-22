@@ -1,11 +1,4 @@
 ﻿// ***********************************************************************
-// Assembly         : hubtelapi-dotnet-v1.462
-// Author           : hubtel
-// Created          : 06-18-2018
-//
-// Last Modified By : DUHO
-// Last Modified On : 06-19-2018
-// ***********************************************************************
 // <copyright file="PaymentsApi.cs" company="">
 //     Copyright ©  2014
 // </copyright>
@@ -214,7 +207,44 @@ namespace hubtelapi_dotnet_v1.Hubtel
 
 
         /// <summary>
-        /// Online Payment Status version one.
+        /// Online Checkout Version One.
+        /// </summary>
+        /// <param name="invoice">The invoice.</param>
+        /// <returns>InvoiceResponse.</returns>
+        /// <exception cref="Exception">
+        /// Request Failed. Unable to get server response
+        /// or
+        /// Request Failed : " + errorMessage
+        /// or
+        /// </exception>
+        public InvoiceResponse OnlineCheckoutV1(CreatedInvoice invoice)
+        {
+            try
+            {
+
+                var resource = $"/merchantaccount/onlinecheckout/Invoice/create";
+
+                var stringWriter = new StringWriter();
+                new JsonSerializer().Serialize(stringWriter, invoice);
+                const string contentType = "application/json";
+                var response = RestClient.Post(resource, contentType, Encoding.UTF8.GetBytes(stringWriter.ToString()));
+                if (response == null) throw new Exception("Request Failed. Unable to get server response");
+                if (response.Status == Convert.ToInt32(HttpStatusCode.OK))
+                    return JsonConvert.DeserializeObject<InvoiceResponse>(response.GetBodyAsString());
+                var errorMessage = $"Status Code={response.Status}, Message={response.GetBodyAsString()}";
+                throw new Exception("Request Failed : " + errorMessage);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(JsonConvert.SerializeObject(e));
+            }
+        }
+
+
+
+
+        /// <summary>
+        /// Online Checkout Status Version one.
         /// </summary>
         /// <param name="token">The token.</param>
         /// <returns>InvoiceStatusResponse.</returns>
@@ -224,7 +254,7 @@ namespace hubtelapi_dotnet_v1.Hubtel
         /// Request Failed : " + errorMessage
         /// or
         /// </exception>
-        public InvoiceStatusResponse OnlinePaymentStatusV1(string token)
+        public InvoiceStatusResponse OnlineCheckoutStatusV1(string token)
         {
             try
             {

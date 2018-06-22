@@ -60,7 +60,7 @@ namespace hubtelapi_dotnet_v1
 
                 //var payments = new PaymentsApi(host);
                 //var statusResponse =
-                //    payments.OnlinePaymentStatusV1("755b8f0979f34d44");
+                //    payments.OnlineCheckoutStatusV1("755b8f0979f34d44");
                 //Console.WriteLine(statusResponse);
 
             }
