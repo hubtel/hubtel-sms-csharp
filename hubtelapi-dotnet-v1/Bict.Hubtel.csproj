@@ -5,11 +5,11 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{C67BC006-E559-43C1-8009-2A8B233E2CAB}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>hubtelapi_dotnet_v1</RootNamespace>
-    <AssemblyName>hubtelapi-dotnet-v1.462</AssemblyName>
-    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <RootNamespace>Bict.Hubtel</RootNamespace>
+    <AssemblyName>Bict.Hubtel</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -70,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Demo.cs" />
-    <Compile Include="Hubtel\PaymentsApi.cs" />
+    <Compile Include="Base\PaymentsApi.cs" />
     <Compile Include="Payments\Actions.cs" />
     <Compile Include="Payments\CreatedInvoice.cs" />
     <Compile Include="Payments\Customer.cs" />
@@ -91,69 +91,69 @@
     <Compile Include="Payments\TransactionCycle.cs" />
     <Compile Include="Payments\TransactionResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Hubtel\AbstractApi.cs" />
-    <Compile Include="Hubtel\AbstractRestClient.cs" />
-    <Compile Include="Hubtel\AccountApi.cs" />
-    <Compile Include="Hubtel\AccountContact.cs" />
-    <Compile Include="Hubtel\AccountProfile.cs" />
-    <Compile Include="Hubtel\Action.cs" />
-    <Compile Include="Hubtel\ApiHost.cs" />
-    <Compile Include="Hubtel\ApiList.cs" />
-    <Compile Include="Hubtel\BasicAuth.cs" />
-    <Compile Include="Hubtel\Campaign.cs" />
-    <Compile Include="Hubtel\ChildAccount.cs" />
-    <Compile Include="Hubtel\Contact.cs" />
-    <Compile Include="Hubtel\ContactApi.cs" />
-    <Compile Include="Hubtel\ContactGroup.cs" />
-    <Compile Include="Hubtel\ApiDictionary.cs" />
-    <Compile Include="Hubtel\ApiException.cs" />
-    <Compile Include="Hubtel\ContentApi.cs" />
-    <Compile Include="Hubtel\ContentFolder.cs" />
-    <Compile Include="Hubtel\ContentLibrary.cs" />
-    <Compile Include="Hubtel\ContentMedia.cs" />
-    <Compile Include="Hubtel\ContentMediaFile.cs" />
-    <Compile Include="Hubtel\FileExtensionMimeTypeMapping.cs" />
-    <Compile Include="Hubtel\HttpUploadHelper.cs" />
-    <Compile Include="Hubtel\MediaInfo.cs" />
-    <Compile Include="Hubtel\IAuth.cs" />
-    <Compile Include="Hubtel\Invoice.cs" />
-    <Compile Include="Hubtel\Message.cs" />
-    <Compile Include="Hubtel\MessageResponse.cs" />
-    <Compile Include="Hubtel\MessagingApi.cs" />
-    <Compile Include="Hubtel\MimePart.cs" />
-    <Compile Include="Hubtel\MoKeyWord.cs" />
-    <Compile Include="Hubtel\NumberPlan.cs" />
-    <Compile Include="Hubtel\NumberPlanItem.cs" />
-    <Compile Include="Hubtel\OAuth.cs" />
-    <Compile Include="Hubtel\Sender.cs" />
-    <Compile Include="Hubtel\Service.cs" />
-    <Compile Include="Hubtel\ServiceType.cs" />
-    <Compile Include="Hubtel\Settings.cs" />
-    <Compile Include="Hubtel\MessageTemplate.cs" />
-    <Compile Include="Hubtel\StreamMimePart.cs" />
-    <Compile Include="Hubtel\StringMimePart.cs" />
-    <Compile Include="Hubtel\SupportApi.cs" />
-    <Compile Include="Hubtel\Tag.cs" />
-    <Compile Include="Hubtel\Ticket.cs" />
-    <Compile Include="Hubtel\TicketResponse.cs" />
-    <Compile Include="Hubtel\BasicRestClient.cs" />
-    <Compile Include="Hubtel\BasicRequestHandler.cs" />
-    <Compile Include="Hubtel\ConsoleRequestLogger.cs" />
-    <Compile Include="Hubtel\HttpDelete.cs" />
-    <Compile Include="Hubtel\HttpHead.cs" />
-    <Compile Include="Hubtel\HttpGet.cs" />
-    <Compile Include="Hubtel\HttpPut.cs" />
-    <Compile Include="Hubtel\HttpPost.cs" />
-    <Compile Include="Hubtel\HttpRequest.cs" />
-    <Compile Include="Hubtel\HttpRequestException.cs" />
-    <Compile Include="Hubtel\HttpResponse.cs" />
-    <Compile Include="Hubtel\IRequestHandler.cs" />
-    <Compile Include="Hubtel\IRequestLogger.cs" />
-    <Compile Include="Hubtel\ParameterMap.cs" />
-    <Compile Include="Hubtel\StringUtil.cs" />
-    <Compile Include="Hubtel\Topup.cs" />
-    <Compile Include="Hubtel\TopupLocation.cs" />
-    <Compile Include="Hubtel\UploadFile.cs" />
+    <Compile Include="Base\AbstractApi.cs" />
+    <Compile Include="Base\AbstractRestClient.cs" />
+    <Compile Include="Base\AccountApi.cs" />
+    <Compile Include="Base\AccountContact.cs" />
+    <Compile Include="Base\AccountProfile.cs" />
+    <Compile Include="Base\Action.cs" />
+    <Compile Include="Base\ApiHost.cs" />
+    <Compile Include="Base\ApiList.cs" />
+    <Compile Include="Base\BasicAuth.cs" />
+    <Compile Include="Base\Campaign.cs" />
+    <Compile Include="Base\ChildAccount.cs" />
+    <Compile Include="Base\Contact.cs" />
+    <Compile Include="Base\ContactApi.cs" />
+    <Compile Include="Base\ContactGroup.cs" />
+    <Compile Include="Base\ApiDictionary.cs" />
+    <Compile Include="Base\ApiException.cs" />
+    <Compile Include="Base\ContentApi.cs" />
+    <Compile Include="Base\ContentFolder.cs" />
+    <Compile Include="Base\ContentLibrary.cs" />
+    <Compile Include="Base\ContentMedia.cs" />
+    <Compile Include="Base\ContentMediaFile.cs" />
+    <Compile Include="Base\FileExtensionMimeTypeMapping.cs" />
+    <Compile Include="Base\HttpUploadHelper.cs" />
+    <Compile Include="Base\MediaInfo.cs" />
+    <Compile Include="Base\IAuth.cs" />
+    <Compile Include="Base\Invoice.cs" />
+    <Compile Include="Base\Message.cs" />
+    <Compile Include="Base\MessageResponse.cs" />
+    <Compile Include="Base\MessagingApi.cs" />
+    <Compile Include="Base\MimePart.cs" />
+    <Compile Include="Base\MoKeyWord.cs" />
+    <Compile Include="Base\NumberPlan.cs" />
+    <Compile Include="Base\NumberPlanItem.cs" />
+    <Compile Include="Base\OAuth.cs" />
+    <Compile Include="Base\Sender.cs" />
+    <Compile Include="Base\Service.cs" />
+    <Compile Include="Base\ServiceType.cs" />
+    <Compile Include="Base\Settings.cs" />
+    <Compile Include="Base\MessageTemplate.cs" />
+    <Compile Include="Base\StreamMimePart.cs" />
+    <Compile Include="Base\StringMimePart.cs" />
+    <Compile Include="Base\SupportApi.cs" />
+    <Compile Include="Base\Tag.cs" />
+    <Compile Include="Base\Ticket.cs" />
+    <Compile Include="Base\TicketResponse.cs" />
+    <Compile Include="Base\BasicRestClient.cs" />
+    <Compile Include="Base\BasicRequestHandler.cs" />
+    <Compile Include="Base\ConsoleRequestLogger.cs" />
+    <Compile Include="Base\HttpDelete.cs" />
+    <Compile Include="Base\HttpHead.cs" />
+    <Compile Include="Base\HttpGet.cs" />
+    <Compile Include="Base\HttpPut.cs" />
+    <Compile Include="Base\HttpPost.cs" />
+    <Compile Include="Base\HttpRequest.cs" />
+    <Compile Include="Base\HttpRequestException.cs" />
+    <Compile Include="Base\HttpResponse.cs" />
+    <Compile Include="Base\IRequestHandler.cs" />
+    <Compile Include="Base\IRequestLogger.cs" />
+    <Compile Include="Base\ParameterMap.cs" />
+    <Compile Include="Base\StringUtil.cs" />
+    <Compile Include="Base\Topup.cs" />
+    <Compile Include="Base\TopupLocation.cs" />
+    <Compile Include="Base\UploadFile.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

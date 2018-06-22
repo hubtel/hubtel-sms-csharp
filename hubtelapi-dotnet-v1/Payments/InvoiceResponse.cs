@@ -28,52 +28,17 @@ namespace hubtelapi_dotnet_v1.Payments
         public string ResponseText { get; set; }
 
         /// <summary>
-        /// Gets or sets the invoice.
+        /// Gets or sets the description.
         /// </summary>
-        /// <value>The invoice.</value>
-        [JsonProperty("invoice")]
-        public Invoice Invoice { get; set; }
+        /// <value>The description.</value>
+        [JsonProperty("description")]
+        public string Description { get; set; }
 
         /// <summary>
-        /// Gets or sets the actions.
+        /// Gets or sets the token.
         /// </summary>
-        /// <value>The actions.</value>
-        [JsonProperty("actions")]
-        public Actions Actions { get; set; }
-
-        /// <summary>
-        /// Gets or sets the custom data.
-        /// </summary>
-        /// <value>The custom data.</value>
-        [JsonProperty("custom_data")]
-        public object CustomData { get; set; }
-
-        /// <summary>
-        /// Gets or sets the mode.
-        /// </summary>
-        /// <value>The mode.</value>
-        [JsonProperty("mode")]
-        public string Mode { get; set; }
-
-        /// <summary>
-        /// Gets or sets the status.
-        /// </summary>
-        /// <value>The status.</value>
-        [JsonProperty("status")]
-        public string Status { get; set; }
-
-        /// <summary>
-        /// Gets or sets the customer.
-        /// </summary>
-        /// <value>The customer.</value>
-        [JsonProperty("customer")]
-        public Customer Customer { get; set; }
-
-        /// <summary>
-        /// Gets or sets the receipt URL.
-        /// </summary>
-        /// <value>The receipt URL.</value>
-        [JsonProperty("receipt_url")]
-        public string ReceiptUrl { get; set; }
+        /// <value>The token.</value>
+        [JsonProperty("token")]
+        public string Token { get; set; }
     }
 }

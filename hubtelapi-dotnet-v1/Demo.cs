@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using hubtelapi_dotnet_v1.Hubtel;
+using hubtelapi_dotnet_v1.Payments;
 
 namespace hubtelapi_dotnet_v1
 {
@@ -61,8 +62,41 @@ namespace hubtelapi_dotnet_v1
                 //var payments = new PaymentsApi(host);
                 //var statusResponse =
                 //    payments.OnlineCheckoutStatusV1("755b8f0979f34d44");
+                //Console.WriteLine(statusResponse); //Online Checkout status 
+
+                //var payments = new PaymentsApi(host);
+                //var statusResponse =
+                //    payments.OnlineCheckoutStatusV1("755b8f0979f34d44");
                 //Console.WriteLine(statusResponse);
 
+
+                var payments = new PaymentsApi(host);
+                var statusResponse =
+                    payments.OnlineCheckoutV1(new CreatedInvoice
+                    {
+                        Invoice = new Payments.Invoice
+                        {
+                            Description = "Insurance purchase",
+                            TotalAmount = 0.01
+                        },
+                        Actions = new Actions
+                        {
+                            CancelUrl = "",
+                            ReturnUrl = ""
+                        },
+                        Store = new Store
+                        {
+                            LogoUrl = "",
+                            Name = "Store Ghana",
+                            Phone = "0255899654",
+                            PostalAddress = "SOme Address",
+                            Tagline = "We make things happen",
+                            WebsiteUrl = "",
+                        },
+                        CustomData = new object()
+
+                    });
+                Console.WriteLine(statusResponse.Description);
             }
             catch (Exception e)
             {
