@@ -75,9 +75,41 @@ namespace hubtelapi_dotnet_v1.Hubtel
                     ClientReference = clientReference,
                     Token = "string"
                 };
-                var resource = $"/merchantaccount/merchants/{_merchant}/send/mobilemoney";
+                var resource = $"/merchantaccount/merchants/{_merchant}/receive/mobilemoney";
                 var stringWriter = new StringWriter();
                 new JsonSerializer().Serialize(stringWriter, data);
+                const string contentType = "application/json";
+                var response = RestClient.Post(resource, contentType, Encoding.UTF8.GetBytes(stringWriter.ToString()));
+                if (response == null) throw new Exception("Request Failed. Unable to get server response");
+                if (response.Status == Convert.ToInt32(HttpStatusCode.OK))
+                    return  JsonConvert.DeserializeObject<MoneyResponse>(response.GetBodyAsString());
+                var errorMessage = $"Status Code={response.Status}, Message={response.GetBodyAsString()}";
+                throw new Exception("Request Failed : " + errorMessage);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(JsonConvert.SerializeObject(e));
+            }
+        }
+        /// <summary>
+        /// Requests the payment.
+        /// </summary>
+        /// <param name="payment">The payment.</param>
+        /// <returns>MoneyResponse.</returns>
+        /// <exception cref="Exception">
+        /// Request Failed. Unable to get server response
+        /// or
+        /// Request Failed : " + errorMessage
+        /// or
+        /// </exception>
+        public MoneyResponse RequestPayment(RecievePayment payment)
+        {
+            try
+            {
+                
+                var resource = $"/merchantaccount/merchants/{_merchant}/receive/mobilemoney";
+                var stringWriter = new StringWriter();
+                new JsonSerializer().Serialize(stringWriter, payment);
                 const string contentType = "application/json";
                 var response = RestClient.Post(resource, contentType, Encoding.UTF8.GetBytes(stringWriter.ToString()));
                 if (response == null) throw new Exception("Request Failed. Unable to get server response");
@@ -128,7 +160,7 @@ namespace hubtelapi_dotnet_v1.Hubtel
                     ClientReference = "",
                     Token = "string"
                 };
-                var resource = $"/merchantaccount/merchants/{_merchant}/receive/mobilemoney";
+                var resource = $"/merchantaccount/merchants/{_merchant}/send/mobilemoney";
                 var stringWriter = new StringWriter();
                 new JsonSerializer().Serialize(stringWriter, data);
                 const string contentType = "application/json";

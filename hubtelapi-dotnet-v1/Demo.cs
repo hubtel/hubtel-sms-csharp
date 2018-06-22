@@ -8,7 +8,8 @@ namespace hubtelapi_dotnet_v1
     {
         private static void Main(string[] args)
         {
-            Config("clientId", "clientSecret", "merchantNumber");
+            //Edit these with actual values before tests 
+            Config("ClientId", "ClientSecret", "MerchantNumber");
 
             
 
@@ -32,6 +33,16 @@ namespace hubtelapi_dotnet_v1
                 //  var paymentResponse =
                 //      payments.RequestPayment("233241952532", 0.1M, "Duho wise", "mtn-gh", "Hire Purchase", "http://requestb.in/1minotz1", "http://requestb.in/1minotz1");
                 //  Console.WriteLine(paymentResponse.Data.Description);
+
+
+
+                //  //Payment request example using receive payment class
+                //var payments = new PaymentsApi(host);
+                //var paymentResponse =
+                //    payments.RequestPayment(new RecievePayment{ Amount = 0.1M ,Channel = "mtn-gh",ClientReference = "",
+                //        CustomerEmail = "",CustomerMsisdn = "233241952532", Description = "Hire Purchase",CustomerName = "Duho Wise",PrimaryCallbackUrl = "http://requestb.in/1minotz1",
+                //        SecondaryCallbackUrl = ""});
+                //Console.WriteLine(paymentResponse.Data.Description);
 
 
                 // Transaction Status Check
