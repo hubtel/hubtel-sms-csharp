@@ -73,6 +73,7 @@
     <Compile Include="Hubtel\PaymentsApi.cs" />
     <Compile Include="Payments\Actions.cs" />
     <Compile Include="Payments\CreatedInvoice.cs" />
+    <Compile Include="Payments\Customer.cs" />
     <Compile Include="Payments\Data.cs" />
     <Compile Include="Payments\Datum.cs" />
     <Compile Include="Payments\Invoice.cs" />

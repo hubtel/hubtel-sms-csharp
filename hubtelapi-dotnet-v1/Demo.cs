@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Configuration;
-using System.Linq;
 using hubtelapi_dotnet_v1.Hubtel;
-using hubtelapi_dotnet_v1.Payments;
 
 namespace hubtelapi_dotnet_v1
 {
@@ -10,11 +8,16 @@ namespace hubtelapi_dotnet_v1
     {
         private static void Main(string[] args)
         {
-            var clientId = ConfigurationManager.AppSettings["ClientId"];
-            var clientSecret = ConfigurationManager.AppSettings["ClientSecret"];
+            Config("clientId", "clientSecret", "merchantNumber");
 
+            
 
-            try {
+            try
+            {
+
+                var clientId = ConfigurationManager.AppSettings["ClientId"];
+                var clientSecret = ConfigurationManager.AppSettings["ClientSecret"];
+                var merchant = ConfigurationManager.AppSettings["MerchantNumber"];
                 var host = new ApiHost(new BasicAuth(clientId, clientSecret));
 
 
@@ -40,18 +43,54 @@ namespace hubtelapi_dotnet_v1
                 //    });
                 // Console.WriteLine(statusResponse?.Data?.FirstOrDefault()?.TransactionStatus);
 
+
+
+                //Online Checkout status 
+
+                //var payments = new PaymentsApi(host);
+                //var statusResponse =
+                //    payments.OnlinePaymentStatusV1("755b8f0979f34d44");
+                //Console.WriteLine(statusResponse);
+
             }
-            catch (Exception e) {
-                if (e.GetType() == typeof (HttpRequestException)) {
+            catch (Exception e)
+            {
+                if (e.GetType() == typeof(HttpRequestException))
+                {
                     var ex = e as HttpRequestException;
-                    if (ex != null && ex.HttpResponse != null) {
+                    if (ex != null && ex.HttpResponse != null)
+                    {
                         Console.WriteLine("Error Status Code " + ex.HttpResponse.Status);
                     }
                 }
-                throw;
+
+                Console.WriteLine(e);
+                
             }
 
             Console.ReadKey();
+        }
+
+        private static void Config(string clientId, string clientSecret, string merchantNumber)
+        {
+            var config = ConfigurationManager.OpenExeConfiguration(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            // set api keys clientid and secret
+            config.AppSettings.Settings.Remove("ClientId");
+            config.AppSettings.Settings.Add("ClientId",clientId);
+
+
+            config.AppSettings.Settings.Remove("ClientSecret");
+            config.AppSettings.Settings.Add("ClientSecret",clientSecret);
+
+
+            config.AppSettings.Settings.Remove("MerchantNumber");
+            config.AppSettings.Settings.Add("MerchantNumber", merchantNumber);
+
+            //save new values
+            config.Save(ConfigurationSaveMode.Modified,true);
+            Console.WriteLine(ConfigurationManager.AppSettings["MerchantNumber"]);
+            Console.WriteLine(ConfigurationManager.AppSettings["ClientSecret"]);
+            Console.WriteLine(ConfigurationManager.AppSettings["ClientId"]);
         }
     }
 }

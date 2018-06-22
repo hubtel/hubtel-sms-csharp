@@ -28,14 +28,18 @@ namespace hubtelapi_dotnet_v1.Hubtel
     /// <seealso cref="hubtelapi_dotnet_v1.Hubtel.AbstractApi" />
     public class PaymentsApi: AbstractApi
     {
+        private readonly string _merchant;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="PaymentsApi" /> class.
         /// </summary>
         /// <param name="host"><see cref="ApiHost" /></param>
         public PaymentsApi(ApiHost host) : base(host)
         {
-        }
+            _merchant = ConfigurationManager.AppSettings["MerchantNumber"];
 
+        }
+       
         /// <summary>
         /// Requests the payment.
         /// </summary>
@@ -58,7 +62,6 @@ namespace hubtelapi_dotnet_v1.Hubtel
         {
             try
             {
-                var merchant = ConfigurationManager.AppSettings["MerchantNumber"];
                 var data = new
                 {
                     CustomerName = fullName,
@@ -72,7 +75,7 @@ namespace hubtelapi_dotnet_v1.Hubtel
                     ClientReference = clientReference,
                     Token = "string"
                 };
-                var resource = $"/merchantaccount/merchants/{merchant}/send/mobilemoney";
+                var resource = $"/merchantaccount/merchants/{_merchant}/send/mobilemoney";
                 var stringWriter = new StringWriter();
                 new JsonSerializer().Serialize(stringWriter, data);
                 const string contentType = "application/json";
@@ -91,11 +94,27 @@ namespace hubtelapi_dotnet_v1.Hubtel
 
 
 
+        /// <summary>
+        /// Makes the payment.
+        /// </summary>
+        /// <param name="mobile">The mobile.</param>
+        /// <param name="amount">The amount.</param>
+        /// <param name="fullName">The full name.</param>
+        /// <param name="channel">The channel.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="primaryCallbackUrl">The primary callback URL.</param>
+        /// <param name="secondaryCallbackUrl">The secondary callback URL.</param>
+        /// <returns>MoneyResponse.</returns>
+        /// <exception cref="Exception">
+        /// Request Failed. Unable to get server response
+        /// or
+        /// Request Failed : " + errorMessage
+        /// or
+        /// </exception>
         public MoneyResponse MakePayment( string mobile,decimal amount, string fullName, string channel,string description=null,string primaryCallbackUrl=null,string secondaryCallbackUrl=null)
         {
             try
             {
-                var merchant = ConfigurationManager.AppSettings["MerchantNumber"];
                 var data = new
                 {
                     CustomerName = fullName,
@@ -109,7 +128,7 @@ namespace hubtelapi_dotnet_v1.Hubtel
                     ClientReference = "",
                     Token = "string"
                 };
-                var resource = $"/merchantaccount/merchants/{merchant}/receive/mobilemoney";
+                var resource = $"/merchantaccount/merchants/{_merchant}/receive/mobilemoney";
                 var stringWriter = new StringWriter();
                 new JsonSerializer().Serialize(stringWriter, data);
                 const string contentType = "application/json";
@@ -141,9 +160,8 @@ namespace hubtelapi_dotnet_v1.Hubtel
         {
             try
             {
-                var merchant = ConfigurationManager.AppSettings["MerchantNumber"];
 
-                var resource = $"/merchantaccount/merchants/{merchant}/transactions/status";
+                var resource = $"/merchantaccount/merchants/{_merchant}/transactions/status";
 
                 var parameterMap = RestClient.NewParams();
                 if (!string.IsNullOrWhiteSpace(transaction.HubtelTransactionId)) parameterMap.Set("hubtelTransactionId", HttpUtility.UrlEncode(transaction.HubtelTransactionId));
@@ -153,13 +171,45 @@ namespace hubtelapi_dotnet_v1.Hubtel
                 var response = RestClient.Get(resource, parameterMap);
                 if (response == null) throw new Exception("Request Failed. Unable to get server response");
                 if (response.Status == Convert.ToInt32(HttpStatusCode.OK)) return JsonConvert.DeserializeObject<TransactionResponse>(response.GetBodyAsString());
-                var errorMessage = String.Format("Status Code={0}, Message={1}", response.Status, response.GetBodyAsString());
+                var errorMessage = $"Status Code={response.Status}, Message={response.GetBodyAsString()}";
                 throw new Exception("Request Failed : " + errorMessage);
             }
             catch (Exception e)
             {
                 throw new Exception(JsonConvert.SerializeObject(e));
             }
+        }
+
+
+        /// <summary>
+        /// Online Payment Status version one.
+        /// </summary>
+        /// <param name="token">The token.</param>
+        /// <returns>InvoiceStatusResponse.</returns>
+        /// <exception cref="Exception">
+        /// Request Failed. Unable to get server response
+        /// or
+        /// Request Failed : " + errorMessage
+        /// or
+        /// </exception>
+        public InvoiceStatusResponse OnlinePaymentStatusV1(string token)
+        {
+            try
+            {
+
+                var resource = $"/merchantaccount/onlinecheckout/invoice/status/{token}";
+                var response = RestClient.Get(resource);
+
+                if (response == null) throw new Exception("Request Failed. Unable to get server response");
+                if (response.Status == Convert.ToInt32(HttpStatusCode.OK)) return JsonConvert.DeserializeObject<InvoiceStatusResponse>(response.GetBodyAsString());
+                var errorMessage = $"Status Code={response.Status}, Message={response.GetBodyAsString()}";
+                throw new Exception("Request Failed : " + errorMessage);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(JsonConvert.SerializeObject(e));
+            }
+
         }
 
     }
