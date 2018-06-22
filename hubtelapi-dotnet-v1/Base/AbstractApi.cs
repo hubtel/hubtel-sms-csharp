@@ -1,29 +1,18 @@
-﻿// ***********************************************************************
-// <copyright file="AbstractApi.cs" company="">
-//     Copyright ©  2014
-// </copyright>
-// <summary></summary>
-// ***********************************************************************
-namespace hubtelapi_dotnet_v1.Hubtel
+﻿namespace Bict.Hubtel.Base
 {
     /// <summary>
-    /// Abstract class that helps boostraps some of the work needed by the APIss
+    ///     Abstract class that helps boostraps some of the work needed by the APIss
     /// </summary>
     public abstract class AbstractApi
     {
-        /// <summary>
-        /// The rest client
-        /// </summary>
         protected static BasicRestClient RestClient;
-        /// <summary>
-        /// The host
-        /// </summary>
         protected static ApiHost Host;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="AbstractApi"/> class.
         /// </summary>
-        /// <param name="host"><see cref="ApiHost" /></param>
+        /// <param name="host">
+        ///     <see cref="ApiHost" />
+        /// </param>
         protected AbstractApi(ApiHost host)
         {
             Host = host;

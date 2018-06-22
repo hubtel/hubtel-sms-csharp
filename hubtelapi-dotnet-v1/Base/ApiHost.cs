@@ -1,4 +1,4 @@
-﻿namespace hubtelapi_dotnet_v1.Hubtel
+﻿namespace Bict.Hubtel.Base
 {
     /// <summary>
     ///     Wrapper that sets API EndPoint.

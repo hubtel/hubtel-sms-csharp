@@ -157,3 +157,6 @@ $RECYCLE.BIN/
 
 packages/
 /.vs
+*.config
+/binaries/.Net.4.6.2/Bict.Hubtel.exe
+/binaries/.Net.4.6.2/hubtelapi-dotnet-v1.462.exe
