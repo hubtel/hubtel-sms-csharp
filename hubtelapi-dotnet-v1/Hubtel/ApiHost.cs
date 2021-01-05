@@ -10,7 +10,7 @@
         /// </summary>
         public ApiHost()
         {
-            Hostname = "api.hubtel.com";
+            Hostname = "smsc.hubtel.com";
             Port = -1;
             ContextPath = "v1";
             Timeout = 5000;
