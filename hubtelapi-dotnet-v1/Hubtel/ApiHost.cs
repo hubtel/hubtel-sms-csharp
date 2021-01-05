@@ -18,7 +18,7 @@
             SecuredConnection = true;
             Auth = null;
         }
-
+         
 
         /// <summary>
         /// </summary>
