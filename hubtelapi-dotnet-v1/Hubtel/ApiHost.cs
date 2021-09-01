@@ -6,11 +6,12 @@
     public class ApiHost
     {
         /// <summary>
-        ///     ApiHost
+        /// 
         /// </summary>
-        public ApiHost()
+        /// <param name="baseUrl">Contact Hubtel support (tel:0307000577 or support@hubtel.com) for your base URL (e.g. https://sms-api.hubtel-test.com/v1)</param>
+        public ApiHost(string baseUrl)
         {
-            Hostname = "api.hubtel.com";
+            BaseUrl = baseUrl;
             Port = -1;
             ContextPath = "v1";
             Timeout = 5000;
@@ -20,18 +21,21 @@
         }
          
 
-        /// <summary>
-        /// </summary>
-        /// <param name="auth"></param>
-        public ApiHost(IAuth auth) : this()
-        {
-            Auth = auth;
-        }
+      /// <summary>
+      /// 
+      /// </summary>
+      /// <param name="auth"></param>
+      /// <param name="baseUrl">Contact Hubtel support (tel:0307000577 or support@hubtel.com) for your base URL (e.g. https://sms-api.hubtel-test.com/v1)</param>
+        public ApiHost(IAuth auth,string baseUrl) : this(baseUrl)
+      {
+          Auth = auth;
+          
+      }
 
         /// <summary>
         ///     The hostname
         /// </summary>
-        public string Hostname { set; get; }
+        public string BaseUrl { set; get; }
 
         /// <summary>
         ///     The Port

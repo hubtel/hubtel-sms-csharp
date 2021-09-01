@@ -34,10 +34,11 @@ namespace hubtelapi_dotnet_v1.Hubtel
         public MessageResponse SendMessage(Message mesg)
         {
             if (mesg == null) throw new Exception("Parameter 'mesg' cannot be null");
-            const string resource = "/messages/";
+            const string resource = "/";
             var stringWriter = new StringWriter();
             new JsonSerializer().Serialize(stringWriter, mesg);
             const string contentType = "application/json";
+            
             HttpResponse response = RestClient.Post(resource, contentType, Encoding.UTF8.GetBytes(stringWriter.ToString()));
             if (response == null) throw new Exception("Request Failed. Unable to get server response");
             if (response.Status == Convert.ToInt32(HttpStatusCode.Created)) return new MessageResponse(JsonConvert.DeserializeObject<ApiDictionary>(response.GetBodyAsString()));
@@ -48,7 +49,7 @@ namespace hubtelapi_dotnet_v1.Hubtel
         /// <summary>
         ///     Sends a quick message. It returns upon success a <see cref="MessageResponse" /> object.
         /// </summary>
-        /// <param name="from">Sender</param>
+        /// <param name="from">Sender ID. Ensure that your Sender ID is approved</param>
         /// <param name="to">Recipient</param>
         /// <param name="content">Message to send</param>
         /// <param name="registeredDelivery">Request Delivery Receipt</param>

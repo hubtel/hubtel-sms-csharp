@@ -16,11 +16,11 @@
         protected AbstractApi(ApiHost host)
         {
             Host = host;
-            string baseUrl = Host.SecuredConnection ? "https://" : "http://";
-            baseUrl += Host.Hostname;
+          //  string baseUrl = Host.SecuredConnection ? "https://" : "http://";
+            string baseUrl = Host.BaseUrl;
 
-            if (Host.Port > 0) baseUrl += ":" + Host.Port;
-            if (!Host.ContextPath.IsEmpty()) baseUrl += "/" + Host.ContextPath;
+            // if (Host.Port > 0) baseUrl += ":" + Host.Port;
+            // if (!Host.ContextPath.IsEmpty()) baseUrl += "/" + Host.ContextPath;
 
             RestClient = new BasicRestClient(baseUrl, Host.EnabledConsoleLog);
 

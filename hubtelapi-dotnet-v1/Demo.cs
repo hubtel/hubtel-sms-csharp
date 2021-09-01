@@ -12,9 +12,9 @@ namespace hubtelapi_dotnet_v1
 
 
             try {
-                var host = new ApiHost(new BasicAuth(clientId, clientSecret));
+                var host = new ApiHost(new BasicAuth(clientId, clientSecret),"https://sms-api.hubtel-test.com/v1/messages/send");
                 var messageApi = new MessagingApi(host);
-                MessageResponse msg = messageApi.SendQuickMessage("DevUniverse", "+233207110652", "Welcome to planet Hubtel!", true);
+                MessageResponse msg = messageApi.SendQuickMessage("Hubtel", "+233244000000", "Welcome to Hubtel!", true);
                 Console.WriteLine(msg.Status);         
             }
             catch (Exception e) {
