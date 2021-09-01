@@ -76,10 +76,9 @@ namespace hubtelapi_dotnet_v1.Hubtel
         public MessageResponse ScheduleMessage(string messageId, DateTime time)
         {
             string resource = "/";
-            if (!messageId.IsGuid()) throw new Exception("messageId must not be null and be a valid UUID");
-
+          
             const string contentType = "application/json";
-            resource += messageId.Replace("-", "");
+            resource += messageId;
             HttpResponse response = RestClient.Post(resource, contentType, Encoding.UTF8.GetBytes(String.Format("{{\"Time\":\"{0}\"}}", time.ToString("yyyy-MM-dd HH:mm:ss"))));
             if (response == null) throw new Exception("Request Failed. Unable to get server response");
             if (response.Status == Convert.ToInt32(HttpStatusCode.Created)) return new MessageResponse(JsonConvert.DeserializeObject<ApiDictionary>(response.GetBodyAsString()));
@@ -99,9 +98,9 @@ namespace hubtelapi_dotnet_v1.Hubtel
         /// <exception cref="Exception">Exception with the appropriate message</exception>
         public Message GetMessage(string messageId)
         {
-            string resource = "/messages/";
-            if (!messageId.IsGuid()) throw new Exception("messageId must not be null and be a valid UUID");
-            resource += messageId.Replace("-", "");
+            string resource = "/";
+
+            resource += messageId;
             HttpResponse response = RestClient.Get(resource);
             if (response == null) throw new Exception("Request Failed. Unable to get server response");
             if (response.Status == Convert.ToInt32(HttpStatusCode.OK)) return new Message(JsonConvert.DeserializeObject<ApiDictionary>(response.GetBodyAsString()));
