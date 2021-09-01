@@ -60,7 +60,7 @@ The SDK currently is organized around four main classes:
             const string clientId = "user233";
             const string clientSecret = "password23";
             try {
-                var host = new ApiHost(new BasicAuth(clientId, clientSecret));
+                var host = new ApiHost(new BasicAuth(clientId, clientSecret),"https://sms-api.hubtel-test.com/v1/messages/send");
                 var messageApi = new MessagingApi(host);
                 // scheduling message from 4 days from now.
                 Message message = new Message {
@@ -95,7 +95,7 @@ The SDK currently is organized around four main classes:
             const string clientId = "user233";
             const string clientSecret = "password23";
             try {
-                var host = new ApiHost(new BasicAuth(clientId, clientSecret));
+                var host = new ApiHost(new BasicAuth(clientId, clientSecret),"https://sms-api.hubtel-test.com/v1/messages/send");
                 var accountApi = new AccountApi(host);
                 AccountProfile profile = accountApi.GetAccountProfile();
                 Console.WriteLine("Profile Account Id {0}", profile.AccountId);
